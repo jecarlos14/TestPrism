@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage x:Class="TestPrism.MainPage"
+             xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:d="http://xamarin.com/schemas/2014/forms/design"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:prism="clr-namespace:Prism.Behaviors;assembly=Prism.Forms"
+             xmlns:vm="clr-namespace:TestPrism"
+             mc:Ignorable="d">
+    <ContentPage.BindingContext>
+        <vm:MainPageViewModel />
+    </ContentPage.BindingContext>
+    <StackLayout Padding="20,50">
+        <!--  Place new controls here  -->
+        <Label Text="First Value" />
+        <Entry Text="{Binding FirstValue}">
+            <Entry.Behaviors>
+                <prism:EventToCommandBehavior Command="{Binding CalculeResultCommand}"
+                                              EventName="TextChanged" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Second Value" />
+        <Entry Text="{Binding SecondValue}">
+            <Entry.Behaviors>
+                <prism:EventToCommandBehavior Command="{Binding CalculeResultCommand}"
+                                              EventName="TextChanged" />
+            </Entry.Behaviors>
+        </Entry>
+
+        <Label Text="Result" />
+        <Entry IsReadOnly="True"
+               Text="{Binding Result}" />
+    </StackLayout>
+</ContentPage>
